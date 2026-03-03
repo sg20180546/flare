@@ -1,0 +1,165 @@
+(flare38) elicer@0cf087e23d5d:~/flare$ CUDA_VISIBLE_DEVICES=0 bash eval.sh tests_unseen 0 5 flare
+Auto GPU config:
+Number of processes: 26
+Number of processes on GPU 0: 26
+Number of processes per GPU: 0
+Auto GPU config:
+Number of processes: 26
+Number of processes on GPU 0: 26
+Number of processes per GPU: 0
+dn is  flare
+Auto GPU config:
+Number of processes: 26
+Number of processes on GPU 0: 26
+Number of processes per GPU: 0
+Found path: /home/elicer/.ai2thor/releases/thor-201909061227-Linux64/thor-201909061227-Linux64
+Mono path[0] = '/home/elicer/.ai2thor/releases/thor-201909061227-Linux64/thor-201909061227-Linux64_Data/Managed'
+Mono config path = '/home/elicer/.ai2thor/releases/thor-201909061227-Linux64/thor-201909061227-Linux64_Data/Mono/etc'
+Preloaded 'ScreenSelector.so'
+Display 0 'VNC-0': 1024x768 (primary device).
+Logging to /home/elicer/.config/unity3d/Allen Institute for Artificial Intelligence/AI2-Thor/Player.log
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5701:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5701:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+/home/elicer/.conda/envs/flare38/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+ThorEnv started.
+/home/elicer/.conda/envs/flare38/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'w
+  warnings.warn(
+/home/elicer/.conda/envs/flare38/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be rem
+  warnings.warn(msg)
+instruction goal is  Examine a grey bowl in the light of a lamp.
+list_of_highlevel_actions: ['Bowl', 'PickupObject', 'Bowl', '0', 0]
+list_of_highlevel_actions: ['DeskLamp', 'ToggleObjectOn', 'DeskLamp', '0', 1]
+[False, False]
+self.goal_idx2cat is  {0: 'Knife', 1: 'SinkBasin', 2: 'ArmChair', 3: 'BathtubBasin', 4: 'Bed', 5: 'Cabinet', 6: 'Cart', 7: 'CoffeeMachine', 8: 'CoffeeTable', 9: 'CounterTop', 10: 'Desk', 11: 'DiningTable', 1
+Resetting ThorEnv
+Task: Examine a grey bowl in the light of a lamp.
+main.py:214: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor)
+  obs = torch.tensor(obs).to(device)
+/home/elicer/.conda/envs/flare38/lib/python3.8/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered intern
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/home/elicer/.conda/envs/flare38/lib/python3.8/site-packages/torch/nn/functional.py:4358: UserWarning: Default grid_sample and affine_grid behavior has changed to align_corners=False since 1.3.0. Please spec
+  warnings.warn(
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> CoffeeTable_1b732e39 is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Chair_df4c85aa is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Sofa_de7b032e is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Chair_df4c85aa is blocking Agent 0 from moving 0
+This episode is probably Success!
+episode #  0 ended and process number is 0
+steps taken for episode#  0  is  165  | episode time: 124.2s (2.1min)
+instruction goal is  Examine a bowl by the light of a lamp.
+list_of_highlevel_actions: ['Bowl', 'PickupObject', 'Bowl', '0', 0]
+list_of_highlevel_actions: ['DeskLamp', 'ToggleObjectOn', 'DeskLamp', '0', 1]
+[False, False]
+self.goal_idx2cat is  {0: 'Knife', 1: 'SinkBasin', 2: 'ArmChair', 3: 'BathtubBasin', 4: 'Bed', 5: 'Cabinet', 6: 'Cart', 7: 'CoffeeMachine', 8: 'CoffeeTable', 9: 'CounterTop', 10: 'Desk', 11: 'DiningTable', 1
+Resetting ThorEnv
+Task: Examine a bowl by the light of a lamp.
+second object is  [False, False]
+main.py:529: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor)
+  obs = torch.tensor(obs).to(device)
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> CoffeeTable_1b732e39 is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Chair_df4c85aa is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Sofa_de7b032e is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Chair_df4c85aa is blocking Agent 0 from moving 0
+This episode is probably Success!
+episode #  1 ended and process number is 0
+steps taken for episode#  1  is  165  | episode time: 103.1s (1.7min)
+instruction goal is  Grab the grey bowl on the corner table, turn on the lamp
+list_of_highlevel_actions: ['Bowl', 'PickupObject', 'Bowl', '0', 0]
+list_of_highlevel_actions: ['DeskLamp', 'ToggleObjectOn', 'DeskLamp', '0', 1]
+[False, False]
+self.goal_idx2cat is  {0: 'Knife', 1: 'SinkBasin', 2: 'ArmChair', 3: 'BathtubBasin', 4: 'Bed', 5: 'Cabinet', 6: 'Cart', 7: 'CoffeeMachine', 8: 'CoffeeTable', 9: 'CounterTop', 10: 'Desk', 11: 'DiningTable', 1
+Resetting ThorEnv
+Task: Grab the grey bowl on the corner table, turn on the lamp
+second object is  [False, False]
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> CoffeeTable_1b732e39 is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Chair_df4c85aa is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Sofa_de7b032e is blocking Agent 0 from moving 0
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> Chair_df4c85aa is blocking Agent 0 from moving 0
+This episode is probably Success!
+episode #  2 ended and process number is 0
+steps taken for episode#  2  is  165  | episode time: 102.1s (1.7min)
+instruction goal is  Move two dog sculptures to the coffee table. 
+list_of_highlevel_actions: ['Statue', 'PickupObject', 'Statue', 'Shelf', 0]
+list_of_highlevel_actions: ['CoffeeTable', 'PutObject', 'Statue', 'CoffeeTable', 1]
+list_of_highlevel_actions: ['Statue', 'PickupObject', 'Statue', 'SideTable', 2]
+list_of_highlevel_actions: ['CoffeeTable', 'PutObject', 'Statue', 'CoffeeTable', 3]
+[False, False, True, False]
+self.goal_idx2cat is  {0: 'Knife', 1: 'SinkBasin', 2: 'ArmChair', 3: 'BathtubBasin', 4: 'Bed', 5: 'Cabinet', 6: 'Cart', 7: 'CoffeeMachine', 8: 'CoffeeTable', 9: 'CounterTop', 10: 'Desk', 11: 'DiningTable', 1
+Resetting ThorEnv
+Task: Move two dog sculptures to the coffee table. 
+second object is  [False, False, True, False]
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> ArmChair_35171137 is blocking Agent 0 from moving 0
+This episode is probably Success!
+episode #  3 ended and process number is 0
+steps taken for episode#  3  is  122  | episode time: 58.6s (1.0min)
+instruction goal is  Put 2 dog decorations front to back on the edge of the right side of the table. 
+list_of_highlevel_actions: ['Statue', 'PickupObject', 'Statue', '0', 0]
+list_of_highlevel_actions: ['DiningTable', 'PutObject', 'Statue', 'DiningTable', 1]
+list_of_highlevel_actions: ['Statue', 'PickupObject', 'Statue', '0', 2]
+list_of_highlevel_actions: ['DiningTable', 'PutObject', 'Statue', 'DiningTable', 3]
+[False, False, True, False]
+self.goal_idx2cat is  {0: 'Knife', 1: 'SinkBasin', 2: 'ArmChair', 3: 'BathtubBasin', 4: 'Bed', 5: 'Cabinet', 6: 'Cart', 7: 'CoffeeMachine', 8: 'CoffeeTable', 9: 'CounterTop', 10: 'Desk', 11: 'DiningTable', 1
+Resetting ThorEnv
+Task: Put 2 dog decorations front to back on the edge of the right side of the table. 
+second object is  [False, False, True, False]
+action that causes below error is  {'action': 'LookUp_15', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_15', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_0', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_15', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_0', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_15', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_0', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_15', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'LookUp_0', 'forceAction': True}
+  -> Cannot teleport due to hand object collision.
+action that causes below error is  {'action': 'MoveAhead', 'forceAction': True}
+  -> ArmChair_35171137 is blocking Agent 0 from moving 0
+Interact API failed 10 times
+episode #  4 ended and process number is 0
+steps taken for episode#  4  is  287  | episode time: 139.6s (2.3min)
+list index out of range
+Interact API failed 10 times
+all finished
+
+========== Timing Summary ==========
+Total episodes: 5
+Total time: 592.9s (9.9min)
+Avg time per episode: 118.6s
+=====================================
+All finsihed!
