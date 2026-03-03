@@ -1,3 +1,10 @@
+import os
+import sys
+# thor_env.py uses bare `import gen.*` / `from env.*` — add alfred_utils/ to path
+_alfred_utils_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _alfred_utils_dir not in sys.path:
+    sys.path.insert(0, _alfred_utils_dir)
+
 import cv2
 import copy
 import gen.constants as constants
