@@ -47,6 +47,7 @@ def into_grid(ori_grid, grid_size):
 
 
 def main():
+    total_start_time = time.time()
     args = get_args()
     dn = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     args.dn = dn
@@ -112,9 +113,12 @@ def main():
 
     fails = [0] * num_scenes
     prev_cns = [None] * num_scenes
-    
-    
+    episode_start_times = [None] * num_scenes
+
+
     obs, infos, actions_dicts = envs.load_initial_scene()
+    for e in range(num_scenes):
+        episode_start_times[e] = time.time()
     for e in range(num_scenes):
         if actions_dicts[e] == 'GG':
             print("LLM gaved up")        
@@ -439,7 +443,8 @@ def main():
                 if not(finished[e]):
                     #load next episode for env
                     number_of_this_episode = args.from_idx + traj_number[e] * num_scenes + e
-                    print("steps taken for episode# ",  number_of_this_episode-num_scenes , " is ", next_step_dict_s[e]['steps_taken'])
+                    ep_elapsed = time.time() - episode_start_times[e]
+                    print("steps taken for episode# ",  number_of_this_episode-num_scenes , " is ", next_step_dict_s[e]['steps_taken'], f" | episode time: {ep_elapsed:.1f}s ({ep_elapsed/60:.1f}min)")
                     completed_episodes.append(number_of_this_episode)
                     pickle.dump(completed_episodes, open(f'results/completed_episodes_{args.eval_split}_from_{args.from_idx}_to_{args.to_idx}_{dn}.p', 'wb'))
                     if args.leaderboard and args.test:
@@ -450,6 +455,7 @@ def main():
                     do_not_update_cat_s[e] = None
                     wheres_delete_s[e] = np.zeros((240, 240))
                     obs, infos, actions_dicts = envs.load_next_scene(load)
+                    episode_start_times[e] = time.time()
                     initialized[e] = True
                     view_angles[e] = 45
                     sem_map_module.set_view_angles(view_angles)
@@ -989,6 +995,15 @@ def main():
                 analyze_recs.append(analyze_dict)
                 pickle.dump(analyze_recs, open("results/analyze_recs/" + args.eval_split + "_anaylsis_recs_from_" + str(args.from_idx) + "_to_" + str(args.to_idx) +  "_" + dn  +".p", "wb"))
         # ------------------------------------------------------------------
+
+    total_elapsed = time.time() - total_start_time
+    num_episodes_done = args.to_idx - args.from_idx
+    print(f"\n========== Timing Summary ==========")
+    print(f"Total episodes: {num_episodes_done}")
+    print(f"Total time: {total_elapsed:.1f}s ({total_elapsed/60:.1f}min)")
+    if num_episodes_done > 0:
+        print(f"Avg time per episode: {total_elapsed/num_episodes_done:.1f}s")
+    print(f"=====================================")
 
 
 
