@@ -451,6 +451,14 @@ class ThorEnvCode(Controller):
         return success
 
     def step(self, action, smooth_nav=False):
+        import time as _time
+        import alfred_utils.env.thor_env as _thor_env_module
+        _t0 = _time.time()
+        result = self._step_inner(action, smooth_nav)
+        _thor_env_module.record_unity_time(_time.time() - _t0)
+        return result
+
+    def _step_inner(self, action, smooth_nav=False):
         self.prev_rgb = copy.deepcopy(self.event.frame)
         self.prev_depth = copy.deepcopy(self.event.depth_frame)
         self.prev_seg = copy.deepcopy(self.event.instance_segmentation_frame)

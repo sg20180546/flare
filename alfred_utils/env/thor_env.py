@@ -31,16 +31,10 @@ def reset_unity_timer():
     _unity_total_time = 0.0
     _unity_call_count = 0
 
-def _timed_controller_step(self, action, **kwargs):
+def record_unity_time(elapsed):
     global _unity_total_time, _unity_call_count
-    t0 = time.time()
-    result = _orig_controller_step(self, action, **kwargs)
-    _unity_total_time += time.time() - t0
+    _unity_total_time += elapsed
     _unity_call_count += 1
-    return result
-
-_orig_controller_step = Controller.step
-Controller.step = _timed_controller_step
 
 DEFAULT_RENDER_SETTINGS = {'renderImage': True,
                            'renderDepthImage': False,
