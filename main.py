@@ -1,4 +1,15 @@
 import os, sys
+
+# Ensure flare root is first on sys.path (before any imports),
+# and alfred_utils/ is appended (not prepended) so that bare `import models`
+# resolves to flare's models/, not alfred_utils/models/.
+_flare_root = os.path.dirname(os.path.abspath(__file__))
+if _flare_root not in sys.path:
+    sys.path.insert(0, _flare_root)
+_alfred_utils = os.path.join(_flare_root, 'alfred_utils')
+if _alfred_utils not in sys.path:
+    sys.path.append(_alfred_utils)
+
 import matplotlib
 
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -33,9 +44,6 @@ from models.sem_mapping import Semantic_Mapping
 from models.instructions_processed_LP.ALFRED_task_helper import determine_consecutive_interx
 import alfred_utils.gen.constants as constants
 from models.semantic_policy.sem_map_model import UNetMulti
-
-# thor_env.py uses bare `import gen.*` internally, so alfred_utils/ must be on sys.path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'alfred_utils'))
 import alfred_utils.env.thor_env as _thor_env_module
 
 

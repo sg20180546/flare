@@ -1,11 +1,13 @@
 import os
 import sys
 
-# thor_env_code.py imports from flare root (models.*, arguments, envs.*)
-# ensure flare root is on sys.path even in multiprocessing child processes
+# Ensure flare root first, alfred_utils/ appended — so `import models` finds flare's models/
 _flare_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_alfred_utils_dir = os.path.join(_flare_root, 'alfred_utils')
 if _flare_root not in sys.path:
     sys.path.insert(0, _flare_root)
+if _alfred_utils_dir not in sys.path:
+    sys.path.append(_alfred_utils_dir)
 
 import cv2
 import copy
