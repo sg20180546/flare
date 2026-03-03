@@ -33,6 +33,9 @@ from models.sem_mapping import Semantic_Mapping
 from models.instructions_processed_LP.ALFRED_task_helper import determine_consecutive_interx
 import alfred_utils.gen.constants as constants
 from models.semantic_policy.sem_map_model import UNetMulti
+
+# thor_env.py uses bare `import gen.*` internally, so alfred_utils/ must be on sys.path
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'alfred_utils'))
 import alfred_utils.env.thor_env as _thor_env_module
 
 
