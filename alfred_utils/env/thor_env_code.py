@@ -1,6 +1,12 @@
 import os
 import sys
 
+# thor_env_code.py imports from flare root (models.*, arguments, envs.*)
+# ensure flare root is on sys.path even in multiprocessing child processes
+_flare_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if _flare_root not in sys.path:
+    sys.path.insert(0, _flare_root)
+
 import cv2
 import copy
 import alfred_utils.gen.constants as constants
