@@ -23,7 +23,7 @@ python main.py \
         --sem_gpu_id 0  \
         --sem_seg_gpu 0 \
         --depth_gpu 0   \
-        --x_display 1   \
+        --x_display 0   \
         --seed 6        \
         
 
