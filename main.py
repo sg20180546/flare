@@ -33,6 +33,7 @@ from models.sem_mapping import Semantic_Mapping
 from models.instructions_processed_LP.ALFRED_task_helper import determine_consecutive_interx
 import alfred_utils.gen.constants as constants
 from models.semantic_policy.sem_map_model import UNetMulti
+from alfred_utils.env.thor_env import ThorEnv
 
 
 
@@ -444,7 +445,11 @@ def main():
                     #load next episode for env
                     number_of_this_episode = args.from_idx + traj_number[e] * num_scenes + e
                     ep_elapsed = time.time() - episode_start_times[e]
-                    print("steps taken for episode# ",  number_of_this_episode-num_scenes , " is ", next_step_dict_s[e]['steps_taken'], f" | episode time: {ep_elapsed:.1f}s ({ep_elapsed/60:.1f}min)")
+                    ep_unity = ThorEnv.unity_total_time
+                    ep_algo = ep_elapsed - ep_unity
+                    print("steps taken for episode# ",  number_of_this_episode-num_scenes , " is ", next_step_dict_s[e]['steps_taken'],
+                          f" | total: {ep_elapsed:.1f}s  unity: {ep_unity:.1f}s ({ep_unity/ep_elapsed*100:.0f}%)  algo: {ep_algo:.1f}s ({ep_algo/ep_elapsed*100:.0f}%)")
+                    ThorEnv.reset_unity_timer()
                     completed_episodes.append(number_of_this_episode)
                     pickle.dump(completed_episodes, open(f'results/completed_episodes_{args.eval_split}_from_{args.from_idx}_to_{args.to_idx}_{dn}.p', 'wb'))
                     if args.leaderboard and args.test:
@@ -998,11 +1003,15 @@ def main():
 
     total_elapsed = time.time() - total_start_time
     num_episodes_done = args.to_idx - args.from_idx
+    total_unity = ThorEnv.unity_total_time
+    total_algo = total_elapsed - total_unity
     print(f"\n========== Timing Summary ==========")
-    print(f"Total episodes: {num_episodes_done}")
-    print(f"Total time: {total_elapsed:.1f}s ({total_elapsed/60:.1f}min)")
+    print(f"Total episodes : {num_episodes_done}")
+    print(f"Total time     : {total_elapsed:.1f}s ({total_elapsed/60:.1f}min)")
+    print(f"  Unity time   : {total_unity:.1f}s ({total_unity/total_elapsed*100:.0f}%)")
+    print(f"  Algo time    : {total_algo:.1f}s ({total_algo/total_elapsed*100:.0f}%)")
     if num_episodes_done > 0:
-        print(f"Avg time per episode: {total_elapsed/num_episodes_done:.1f}s")
+        print(f"Avg per episode: {total_elapsed/num_episodes_done:.1f}s  (algo only: {total_algo/num_episodes_done:.1f}s)")
     print(f"=====================================")
 
 

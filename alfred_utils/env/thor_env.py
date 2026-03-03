@@ -9,6 +9,19 @@ import gen.utils.image_util as image_util
 from gen.utils import game_util
 from gen.utils.game_util import get_objects_of_type, get_obj_of_type_closest_to_obj
 import pickle
+import time
+
+# Global Unity step timing accumulator (shared across all ThorEnv instances)
+_unity_total_time = 0.0
+_unity_call_count = 0
+
+def _timed_controller_step(self, action, **kwargs):
+    global _unity_total_time, _unity_call_count
+    t0 = time.time()
+    result = Controller.step(self, action, **kwargs)
+    _unity_total_time += time.time() - t0
+    _unity_call_count += 1
+    return result
 
 DEFAULT_RENDER_SETTINGS = {'renderImage': True,
                            'renderDepthImage': False,
@@ -20,6 +33,15 @@ class ThorEnv(Controller):
     '''
     an extension of ai2thor.controller.Controller for ALFRED tasks
     '''
+
+    unity_total_time = 0.0
+    unity_call_count = 0
+
+    @classmethod
+    def reset_unity_timer(cls):
+        cls.unity_total_time = 0.0
+        cls.unity_call_count = 0
+
     def __init__(self, x_display=constants.X_DISPLAY,
                  player_screen_height=constants.DETECTION_SCREEN_HEIGHT,
                  player_screen_width=constants.DETECTION_SCREEN_WIDTH,
@@ -39,6 +61,16 @@ class ThorEnv(Controller):
         self.heated_objects = set()
 
         print("ThorEnv started.")
+
+        # Wrap Controller.step to measure Unity HTTP time
+        _orig_step = Controller.step
+        def _timed_step(self_ctrl, action, **kwargs):
+            t0 = time.time()
+            result = _orig_step(self_ctrl, action, **kwargs)
+            ThorEnv.unity_total_time += time.time() - t0
+            ThorEnv.unity_call_count += 1
+            return result
+        Controller.step = _timed_step
 
     def reset(self, scene_name_or_num,
               grid_size=constants.AGENT_STEP_SIZE / constants.RECORD_SMOOTHING_FACTOR,
